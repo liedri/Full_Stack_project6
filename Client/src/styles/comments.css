@@ -1,0 +1,75 @@
+.post_card {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin-left: 70px;
+    margin-right: 70px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .post_title {
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-left: 100px;
+    margin-top: 30px;
+  }
+  
+  .post_body {
+    font-weight: 200;
+    font-size: 10px;
+    margin-bottom: 30px;
+    color: gray;
+    margin-left: 100px;
+
+  }
+
+  .post_card.selected {
+    transform: scale(1.05);
+    border: 1px solid #333;
+  }
+
+  .comments_btn_div {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+  }
+
+  .comments_btn{
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  }
+
+  .new_comment_btn{
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  }
+  
+  .new_comment_btn:hover, .comments_btn:hover{
+    background: #fff;
+    color: #333;
+  }
+
+  .hidden{
+    visibility: hidden; 
+
+  }
+
+  li{
+    list-style-type: none;
+  }

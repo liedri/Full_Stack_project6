@@ -1,0 +1,70 @@
+.todo_list {
+    margin-left: 40px;
+  }
+  
+  .task_input {
+    position: relative;
+    height: 52px;
+    padding: 0 25px;
+  }
+  
+  .task_input .icon {
+    position: absolute;
+    top: 40%;
+    color: #999;
+    font-size: 25px;
+    transform: translate(17px, -50%);
+  }
+  
+  .task_input input {
+    height: 40px;
+    width: 300px;
+    outline: none;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 0 20px 0 53px;
+    border: 1px solid #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+
+  }
+  
+  .task_input input::placeholder {
+    color: #bfbfbf;
+  }
+
+.filters {
+    margin-bottom: 20px;
+}
+  
+  .filters span {
+    margin: 0 8px;
+    font-size: 17px;
+    color: #444444;
+    cursor: pointer;
+}
+
+.filters span:hover {
+    color: white;
+}
+  
+  .separator_line {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+    width: 50%;
+    
+  }
+  
+  .todo-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox-wrapper {
+    margin-right: 10px;
+  }
+  
+  .title {
+    margin: 0;
+  }
+  
