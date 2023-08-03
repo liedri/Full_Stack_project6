@@ -4,6 +4,7 @@ import { useState } from "react";
 //import '../styles/info.css';
 
 async function Info() {
+  console.log("info page---------");
   let [data, setData] = useState([]);
 
   const user_id = JSON.parse(localStorage.getItem('user')).id;
