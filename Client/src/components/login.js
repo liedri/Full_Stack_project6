@@ -5,39 +5,40 @@ import '../styles/login_page.css';
 const LoginPage = (props) => {
   const [formValue, setFormValue] = useState({ username: '', password: '' });
   const navigate = useNavigate();
-  const [usersList, setUsersList] = useState([]);
+  //const [usersList, setUsersList] = useState([]);
+  let [data, setData] = useState([]);
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValue((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleLogin = () => {
+  const handleLogin = async() => {
     // Check if the provided username and password match any user in the usersList
-    const user = usersList.find(
-      (user) => user.username === formValue.username && user.address.geo.lat.slice(-4) === formValue.password
-    );
+    const fetchedData = await fetch(`http://localhost:3000/api/users?username=${formValue.username}&password=${formValue.password}`);
+    const data = await fetchedData.json();
+    console.log("client/log/data: ", data);
+    setData(data);
 
-    if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
-      navigate(`/application/${user.id}`);
+    if (data) {
+      localStorage.setItem('user', JSON.stringify(data));
+      navigate(`/application/${data.id}/info`);
     } else {
       alert('Username / password is wrong');
     }
   };
 
-  async function importData() {
-    try {
-      const fetchedData = await fetch(`http://localhost:3000/api/users/`);
-      const data = await fetchedData.json();
-      console.log('users data: ');
-      setUsersList(data);
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    }
-  }
-
-  importData();
+  // async function importData() {
+  //   try {
+  //     const fetchedData = await fetch(`http://localhost:3000/api/users/`);
+  //     const data = await fetchedData.json();
+  //     console.log('users data: ');
+  //     setUsersList(data);
+  //   } catch (error) {
+  //     console.error('Error fetching users:', error);
+  //   }
+  // }
 
   return (
     <div className='open_window'>

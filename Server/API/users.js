@@ -1,14 +1,24 @@
 const { pool } = require('./api');
 
 // ----------- Get ------------------
-async function getUser({username, password}) {
-  console.log(username, ", ", password);
-  const result = await pool.query('SELECT * FROM users WHERE username = ? AND password = ?',
-  [username, password]);
-  //console.log('api/users/get/result: ', result);
+async function getUserId(username) {
+  //console.log("getUserId function -----------: ");
+  //console.log("username: ", username);
+  const result = await pool.query('SELECT * FROM users WHERE username = ?',
+  [username]);
+  //console.log('api/users/get/result: ', result[0][0].id);
   return result[0];
 }
 
+async function getUserPassword(id) {
+  //console.log("getUserPassword function -----------: ");
+  //console.log("id: ", id);
+  const result = await pool.query('SELECT * FROM address WHERE id = ?',
+  [id]);
+  //console.log('api/users/get/result2: ', result);
+  return result[0];
+}
+/*
 // ----------- Post ------------------
 async function postUser({firstName, lastName, email, phone, password, isDeleted, createdAt, lastModified, username}) {
   console.log("------------api detais-----------")
@@ -35,10 +45,11 @@ async function deleteUser({id}) {
 
     return result[0].affectedRows > 0
 }
-
+*/
 module.exports = {
-  getUser,
-  postUser,
+  getUserId,
+  getUserPassword
+    //postUser,
   //updateTodo,
-  deleteUser
+  //deleteUser
 }

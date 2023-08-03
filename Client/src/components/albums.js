@@ -2,18 +2,17 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-//import '../styles/albums.css';
+import '../styles/albums.css';
 
 function Albums() {
 
-    const loggedInUser = JSON.parse(localStorage.getItem("user"));
+    const user_id = JSON.parse(localStorage.getItem('user')).id;
     const [user_albums, setUserAlbums] = useState([]);
 
     async function importAlbums() {
-        const albums_list = await fetch('https://jsonplaceholder.typicode.com/albums');
+        const albums_list = await fetch(`http://localhost:3000/api/albums?userId=${user_id}`);
         const albums_json = await albums_list.json();
-        const temp = albums_json.filter(album => album.userId === loggedInUser.id);
-        setUserAlbums(temp);
+        setUserAlbums(albums_json);
     }
 
     useEffect(
@@ -29,7 +28,7 @@ function Albums() {
                 <ol className="album-list">
                     {user_albums.map((album) => (
                         <Link
-                            to={`/application/${loggedInUser.id}/albums/${album.id}/photos`}
+                            to={`/application/${user_id}/albums/${album.id}/photos`}
                             state={album.id}
                             key={album.id}
                             className="album-item-link">

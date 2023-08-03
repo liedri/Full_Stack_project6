@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {useParams} from "react-router-dom";
 
-//import '../styles/photos.css';
+import '../styles/photos.css';
 
 
 export default function Photos() {
@@ -11,7 +11,8 @@ export default function Photos() {
     const [photoCount, setPhotoCount] = useState(0);
 
     function importPhotos() {
-        fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${params["id"]}&_limit=10&_start=${photoCount}`)
+      //fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${params["id"]}&_limit=10&_start=${photoCount}`)
+      fetch(`http://localhost:3000/api/photos?albumId=${params["id"]}&_limit=10&_start=${photoCount}`)
           .then(response => {
             return response.json();
           })
