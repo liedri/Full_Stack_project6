@@ -14,7 +14,8 @@ const LoginPage = (props) => {
     setFormValue((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleLogin = async() => {
+  const handleLogin = async(event) => {
+    event.preventDefault();
     // Check if the provided username and password match any user in the usersList
     const fetchedData = await fetch(`http://localhost:3000/api/users?username=${formValue.username}&password=${formValue.password}`);
     const data = await fetchedData.json();
@@ -22,8 +23,8 @@ const LoginPage = (props) => {
     setData(data);
 
     if (data) {
-      localStorage.setItem('user', JSON.stringify(data));
-      navigate(`/application/${data.id}/info`);
+      localStorage.setItem('user', JSON.stringify(data[0]));
+      navigate(`/application/${data[0].id}/info`);
     } else {
       alert('Username / password is wrong');
     }

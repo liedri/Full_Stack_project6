@@ -3,7 +3,8 @@ const { pool } = require('./api');
 // ----------- Get ------------------
 async function getInfoByUser(id) {
   console.log('info/api---------');
-  const result = await pool.query('SELECT * FROM users WHERE userId = ?',
+  console.log('id: ', id);
+  const result = await pool.query('SELECT * FROM users WHERE id = ?',
       [parseInt(id)]);
   return result[0];
 }

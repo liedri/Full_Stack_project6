@@ -10,11 +10,11 @@ async function getPostsByUser(id) {
 }
 
 // ----------- Post ------------------
-async function postPost({ userId, title, body, isDeleted, createdAt, lastModified}) {
+async function postPost({ userId, title, body}) {
   console.log("------------api detais-----------")
-  console.log( parseInt(userId), title, body, isDeleted, createdAt, lastModified || NULL);
-  const result = await pool.query("INSERT INTO posts (userId, title, body, isDeleted, createdAt, lastModified) VALUES (?, ?, ?, ?, ?, ?)",
-      [parseInt(userId), title, body, isDeleted, createdAt, lastModified || NULL]);
+  console.log( parseInt(userId), title, body  );
+  const result = await pool.query("INSERT INTO posts (userId, title, body) VALUES (?, ?, ?)",
+      [parseInt(userId), title, body]);
   return result[0].insertid;
 
 }

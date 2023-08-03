@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 //import '../styles/info.css';
 
-async function Info() {
+function Info() {
   console.log("info page---------");
   let [data, setData] = useState([]);
 
-  const user_id = JSON.parse(localStorage.getItem('user')).id;
-  const fetchedData = await fetch(`http://localhost:3000/api/info?userId=${user_id}`);
-  data = await fetchedData.json();
-  setData(data);
-
+  async function fetching() {
+    const user_id = JSON.parse(localStorage.getItem('user')).id;
+    const fetchedData = await fetch(`http://localhost:3000/api/info?userId=${user_id}`);
+    const data2 = await fetchedData.json();
+    setData(data2[0]);
+  }
+  
   onbeforeunload = (event) => { return event.returnValue = saveData };
 
   const saveData = () => {
     setData(data)
   }
+
+  useEffect(
+    () => {
+      fetching();
+    },[]
+  )
 
   const { firstName, lastName, username, email, phone } = data;
 
